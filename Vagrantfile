@@ -53,6 +53,9 @@ Vagrant.configure("2") do |config|
     mercurio.vm.network :private_network, ip: "192.168.57.11",
                         hostname: true
 
+    mercurio.vm.provision "shell", name: "dnsutils",
+                          inline: "apt-get install -y bind9-dnsutils"
+
     mercurio.vm.provision "shell", name: "mercurio-resolv",
                           inline: "cp -v /vagrant/files/mercurio.olimpo.test/resolv.conf /etc"
     
